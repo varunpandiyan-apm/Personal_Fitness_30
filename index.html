@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember — 30-Day Fitness Challenge</title>
+<meta name="description" content="A personal 30-day fitness challenge: log honest workouts, keep the streak alive, evolve your character and unlock real training lessons.">
+<meta name="theme-color" content="#FAF3E7">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%232B2118'/%3E%3Cpath d='M16 6c1.6 4.2-2.2 5.6-1.2 9 .6 2 2.6 2.4 3.2.6.4 1.6-1 2.6-1 4.4 0 1.6 1.2 2.6 2.6 2.2C22.4 24 24 21.4 24 18.4c0-4.6-3.4-7.6-5.6-10.2-.8 2.2-2 3-3.4 3.4C15.8 9.6 16.4 7.6 16 6z' fill='%23E9A72C'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to dashboard</a>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="26" height="26"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" fill="currentColor"/></svg>
+    </span>
+    <span class="brand-text">
+      <strong>Ember</strong>
+      <span>30-day fitness challenge</span>
+    </span>
+  </div>
+
+  <div class="topbar-right">
+    <div class="pill pill-day" id="headerDay">
+      <span class="pill-k">Day</span>
+      <span class="pill-v" id="headerDayValue">1</span>
+      <span class="pill-k">of 30</span>
+    </div>
+    <div class="pill pill-streak" id="headerStreak" title="Current streak">
+      <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" fill="currentColor"/></svg>
+      <span id="headerStreakValue">0</span><span class="pill-k">day streak</span>
+    </div>
+    <button class="icon-btn" id="menuBtn" aria-label="Settings and data" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="3.1"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 8.9 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 4.6 8.9a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="dash" id="main">
+  <div class="col col-left">
+
+    <section class="card hero" id="hero" aria-labelledby="stageName">
+      <div class="hero-top">
+        <span class="stage-tag" id="stageTag">Stage 1 of 7</span>
+        <span class="level-chip" id="levelChip">0 / 30</span>
+      </div>
+
+      <div class="hero-art">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-ring" aria-hidden="true"></div>
+        <img class="hero-img chr" id="heroImg" src="assets/characters/stage-0.png" alt="The Beginner — current character stage" draggable="false">
+        <div class="hero-sparks" id="heroSparks" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero-title">
+        <p class="eyebrow" id="stageKicker">Day 0 · The beginning</p>
+        <h1 id="stageName">The Beginner</h1>
+        <p class="hero-blurb" id="stageBlurb">Every legend starts with one shaky rep.</p>
+        <div class="stage-meter" id="stageMeter">
+          <span class="meter-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="meter-label" id="meterLabel">5 workouts to The Starter</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="logBtn" type="button">
+        <span id="logBtnLabel">Log Day 1</span>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h13"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+      <button class="link-btn hero-journey" id="journeyBtn" type="button">See all seven stages</button>
+    </section>
+
+    <section class="card details" aria-label="Challenge details">
+      <div class="stat">
+        <span class="stat-label">Challenge day</span>
+        <strong class="stat-value" id="statDay">1</strong>
+        <span class="stat-sub" id="statDaySub">of 30</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Current streak</span>
+        <strong class="stat-value" id="statStreak">0</strong>
+        <span class="stat-sub" id="statStreakSub">days in a row</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Best streak</span>
+        <strong class="stat-value" id="statBest">0</strong>
+        <span class="stat-sub" id="statBestSub">personal best</span>
+      </div>
+      <p class="details-foot" id="detailsFoot">No workouts logged yet. Day 1 is yours to take.</p>
+    </section>
+  </div>
+
+  <div class="col col-right">
+    <div class="row-split">
+      <section class="card progress" aria-labelledby="progressTitle">
+        <div class="card-head">
+          <h2 id="progressTitle">Challenge progress</h2>
+          <span class="tag tag-mustard" id="progressPct">0%</span>
+        </div>
+        <div class="progress-num">
+          <strong id="progressDone">0</strong>
+          <span>of 30 workouts</span>
+        </div>
+        <div class="segments" id="progressSegments" role="img" aria-label="0 of 30 workouts completed"></div>
+        <div class="progress-foot">
+          <span id="progressLeft">30 workouts to go</span>
+          <span id="progressHint">First reward at 5</span>
+        </div>
+      </section>
+
+      <section class="card motivation" aria-labelledby="motivationTitle">
+        <div class="card-head">
+          <h2 id="motivationTitle">Today's motivation</h2>
+          <svg class="motif" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 2v3.2M12 18.8V22M2 12h3.2M18.8 12H22M5 5l2.2 2.2M16.8 16.8 19 19M19 5l-2.2 2.2M7.2 16.8 5 19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <blockquote id="quoteText">Small sessions, repeated, beat perfect sessions, abandoned.</blockquote>
+        <p class="quote-by" id="quoteBy">Daily prompt</p>
+      </section>
+    </div>
+
+    <section class="card challenge" aria-labelledby="challengeTitle">
+      <div class="card-head">
+        <h2 id="challengeTitle">30-day challenge</h2>
+        <ul class="legend" aria-hidden="true">
+          <li><span class="dot dot-done"></span>Done</li>
+          <li><span class="dot dot-current"></span>Today</li>
+          <li><span class="dot dot-upcoming"></span>Upcoming</li>
+          <li><span class="dot dot-missed"></span>Missed</li>
+        </ul>
+      </div>
+      <div class="day-grid" id="dayGrid"></div>
+      <p class="challenge-foot" id="challengeFoot">Tap the highlighted day to log your workout.</p>
+    </section>
+
+    <section class="card rewards" aria-labelledby="rewardsTitle">
+      <div class="card-head">
+        <h2 id="rewardsTitle">Reward shelf</h2>
+        <button class="btn btn-ghost btn-sm" id="viewRewardsBtn" type="button">
+          View all rewards
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+        </button>
+      </div>
+      <div class="reward-strip" id="rewardStrip"></div>
+      <div class="reward-next" id="rewardNext">
+        <div class="rn-text">
+          <span class="rn-label">Next lesson</span>
+          <span class="rn-name" id="rnName">Progressive Overload, Explained</span>
+        </div>
+        <span class="rn-meter" aria-hidden="true"><i id="rnBar"></i></span>
+        <span class="rn-count" id="rnCount">0 / 5</span>
+      </div>
+      <p class="rewards-foot" id="rewardsFoot">Your first lesson unlocks at 5 workouts.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="appfoot">
+  <span class="save-note">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+    Progress saves automatically in this browser
+  </span>
+  <span class="appfoot-right">One workout at a time · 30 sequential days</span>
+</footer>
+
+<div class="modal-root" id="modalRoot" hidden>
+  <div class="modal-backdrop" data-close="1"></div>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+    <button class="modal-close" id="modalClose" type="button" aria-label="Close dialog">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toast-root" id="toastRoot" aria-live="polite" aria-atomic="false"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
