@@ -124,9 +124,12 @@ Add `-GitHubOnly` or `-VercelOnly` to publish just one side. Tokens are read fro
 `*.ps1` files are deliberately excluded from the website upload — they live in the repo
 but are never served publicly.
 
-Vercel is not connected to the GitHub repo, so a `git push` on its own does not deploy.
-Run `publish.ps1` instead, or install the Vercel GitHub App for the account and connect
-the project in the Vercel dashboard if you later want push-to-deploy.
+Vercel is connected to this repository's `main` branch, so **any push deploys to
+production automatically** — `publish.ps1 -GitHubOnly` is the normal way to release, and
+Vercel builds and publishes the result. Running `publish.ps1` without that switch still
+works; it additionally uploads the site files directly instead of waiting for the build.
+`*.ps1`, `*.md`, and `.vercelignore` are listed in `.vercelignore`, so they stay in the
+repository but are never served by the website.
 
 ---
 
