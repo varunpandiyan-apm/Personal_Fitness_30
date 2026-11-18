@@ -1,5 +1,5 @@
-﻿/* ==========================================================================
-   Ember â€” 30-Day Fitness Challenge
+/* ==========================================================================
+   Ember ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â 30-Day Fitness Challenge
    Warm, earthy, playful. Desktop-first single-page dashboard.
    ========================================================================== */
 
@@ -1416,7 +1416,7 @@ kbd {
   .rc-title { font-size: 9.5px; }
 }
 
-@media (max-width: 1080px) {
+@media (max-width: 800px) {
   .dash { grid-template-columns: minmax(0, 1fr); }
   .col-left { order: 1; }
   .col-right { order: 2; }
@@ -1455,5 +1455,154 @@ kbd {
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+/* ======================= fixed single-screen desktop shell ==================
+   The dashboard is locked to the viewport: no page scrolling, and both
+   columns stretch to the same height so the outer edge stays a clean
+   rectangle. Dialogs still scroll internally when their content is long.
+   ========================================================================== */
+@media (min-width: 1000px) and (min-height: 600px) {
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+  }
+
+  .topbar {
+    position: relative;
+    height: clamp(62px, 8.3vh, 78px);
+  }
+
+  .dash {
+    height: 100%;
+    min-height: 0;
+    align-items: stretch;
+    max-width: min(1680px, 100%);
+    grid-template-rows: minmax(0, 1fr);
+    padding-top: clamp(12px, 1.7vh, 20px);
+    padding-bottom: clamp(10px, 1.6vh, 16px);
+  }
+
+  .col {
+    height: 100%;
+    min-height: 0;
+    gap: clamp(10px, 1.5vh, 16px);
+  }
+
+  .row-split { align-items: stretch; }
+
+  /* left column: hero takes the leftover height, details stay fixed */
+  .hero {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
+  /* only the artwork flexes; everything else keeps its natural size */
+  .hero > *:not(.hero-art) { flex: 0 0 auto; }
+  .hero-art {
+    flex: 1 1 auto;
+    min-height: 0;
+    margin: 0;
+  }
+  /* absolutely filling the art box keeps the tall portrait from
+     overflowing and squashing the title and buttons */
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+  .details { flex: 0 0 auto; }
+
+  /* right column: progress row fixed, challenge grows, rewards fixed */
+  .row-split { flex: 0 0 auto; }
+  .challenge {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: clamp(12px, 1.6vh, 16px);
+  }
+  .day-grid {
+    flex: 1 1 auto;
+    min-height: 0;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    margin-top: clamp(8px, 1.3vh, 14px);
+    gap: clamp(6px, 0.9vh, 9px);
+  }
+  .day {
+    aspect-ratio: auto;
+    height: 100%;
+  }
+  .rewards { flex: 0 0 auto; }
+
+  .appfoot {
+    max-width: min(1680px, 100%);
+    padding-top: 6px;
+    padding-bottom: clamp(6px, 1.2vh, 16px);
+  }
+}
+
+/* height-based compaction so the single screen keeps fitting */
+@media (min-width: 1000px) and (min-height: 600px) and (max-height: 860px) {
+  .card { padding: clamp(14px, 1.65vh, 20px) clamp(16px, 1.5vw, 22px); }
+  .hero { padding: clamp(14px, 1.7vh, 18px) clamp(16px, 1.5vw, 22px) clamp(14px, 1.7vh, 20px); }
+  .hero-title h1 { font-size: clamp(25px, 2.1vw, 30px); }
+  .hero-blurb { font-size: 12.5px; margin-top: 4px; }
+  .btn-primary { height: 46px; margin-top: 12px; }
+  .stage-meter { margin-top: 9px; }
+  .hero-journey { margin-top: 5px; }
+  .stat-value { font-size: 26px; }
+  .progress-num { margin: 4px 0 0; }
+  .progress-num strong { font-size: 37px; }
+  .segments { margin: 9px 0 8px; }
+  .challenge-foot,
+  .rewards-foot { display: none; }
+  .reward-strip { margin-top: 10px; }
+  .reward-next { margin-top: 8px; }
+  .reward-chip { padding: 9px 7px 8px; gap: 5px; }
+  .rc-badge { width: 24px; height: 24px; }
+  .appfoot { font-size: 10.5px; }
+}
+
+@media (min-width: 1000px) and (min-height: 600px) and (max-height: 740px) {
+  .appfoot { display: none; }
+  .hero-blurb { display: none; }
+  .hero-title h1 { font-size: 24px; }
+  .btn-primary { height: 42px; margin-top: 10px; }
+  .hero-journey { margin-top: 3px; }
+  .details { padding: 12px 16px 11px; }
+  .details-foot { display: none; }
+  .stat-value { font-size: 23px; }
+  .stat-sub { display: none; }
+  .motivation blockquote { font-size: 16px; }
+  .quote-by { display: none; }
+  .day { font-size: 12.5px; border-radius: 11px; }
+  .day .day-ico { right: 4px; bottom: 3px; }
+  .progress-num strong { font-size: 30px; }
+  .segments { margin: 7px 0 6px; }
+  .reward-strip { margin-top: 8px; gap: 6px; }
+  .reward-next { margin-top: 7px; padding: 7px 10px; }
+}
+
+/* very short windows: drop the secondary next-lesson row rather than clip */
+@media (min-width: 1000px) and (min-height: 600px) and (max-height: 680px) {
+  .reward-next { display: none; }
+  .reward-chip { padding: 8px 6px 7px; gap: 4px; }
+  .rc-badge { width: 22px; height: 22px; }
+  .rc-title { font-size: 9.5px; -webkit-line-clamp: 2; }
+  .reward-chip span.rc-lock,
+  .reward-chip .rc-meta { font-size: 9px; }
+  .motivation blockquote { font-size: 15px; }
+  .hero-title h1 { font-size: 22px; }
+  .stage-meter { margin-top: 6px; }
+  .meter-dots i { width: 20px; }
 }
 
