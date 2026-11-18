@@ -35,8 +35,10 @@ $AuthorEmail = "varuntn007@gmail.com"
 
 # Asset types published as part of the website.
 $SiteExtensions = @(".html", ".css", ".js", ".json", ".png", ".jpg", ".jpeg", ".svg", ".webp", ".ico", ".woff2", ".woff")
-# Repo-only files: source control and docs, never uploaded to the website.
+# Extra files kept in the repository but not published as part of the website.
 $RepoOnlyExtensions = @(".ps1", ".md", ".txt")
+# Extensionless config files that must still be tracked.
+$DotFiles = @(".vercelignore", ".gitignore", "CNAME", "robots.txt")
 
 function Write-Step($text) { Write-Host ""; Write-Host "== $text ==" -ForegroundColor Cyan }
 
@@ -91,7 +93,7 @@ function Invoke-VC {
 
 # ------------------------------------------------------------------ file scan
 $allFiles = Get-ChildItem -LiteralPath $Root -Recurse -File | Where-Object {
-  $_.Extension -in ($SiteExtensions + $RepoOnlyExtensions) -and
+  ($_.Extension -in ($SiteExtensions + $RepoOnlyExtensions) -or $_.Name -in $DotFiles) -and
   $_.FullName -notmatch "\\\.git\\"
 }
 
