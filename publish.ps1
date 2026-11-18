@@ -28,8 +28,8 @@ $Root        = $PSScriptRoot
 $Owner       = "varunpandiyan-apm"
 $Repo        = "Personal_Fitness_30"
 $Branch      = "main"
-$VcProject   = "ember-30"
-$VcDomain    = "ember-30.vercel.app"
+$VcProject   = "personal-fitness-30"
+$VcDomain    = "personal-fitness-30.vercel.app"
 $AuthorName  = "Varun Pandiyan"
 $AuthorEmail = "varuntn007@gmail.com"
 
@@ -183,7 +183,7 @@ if (-not $GitHubOnly) {
   }
   if ($state -ne "READY") {
     Write-Host "   deployment failed: $state" -ForegroundColor Red
-    Write-Host "   https://vercel.com/varunpandiyandesign-2281/$VcProject/deployments"
+    Write-Host "   https://vercel.com/product-10e6/$VcProject/deployments"
     exit 1
   }
   Write-Host "   ready: https://$($resp.url)" -ForegroundColor Green

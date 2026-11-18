@@ -107,7 +107,7 @@ recomputed from that log, so undo is exact and stored data cannot drift out of s
 The app is a plain static site, so publishing is just "copy these files somewhere that
 serves them".
 
-- **Live site:** https://ember-30.vercel.app
+- **Live site:** https://personal-fitness-30.vercel.app
 - **Source:** https://github.com/varunpandiyan-apm/Personal_Fitness_30
 
 `publish.ps1` does both halves of a release in one run — it commits the folder to the
